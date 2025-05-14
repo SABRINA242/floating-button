@@ -1,0 +1,267 @@
+@keyframes neonAnimation {
+    0% {
+        background-color: #FF0000;
+        box-shadow: 0 0 10px #FF0000;
+    }
+    45% {
+        background-color: #FF0000;
+        box-shadow: 0 0 10px #FF0000;
+    }
+    50% {
+        background-color: #0000FF;
+        box-shadow: 0 0 10px #0000FF;
+    }
+    95% {
+        background-color: #0000FF;
+        box-shadow: 0 0 10px #0000FF;
+    }
+    100% {
+        background-color: #FF0000;
+        box-shadow: 0 0 10px #FF0000;
+    }
+}
+
+@keyframes borderNeon {
+    0% {
+        box-shadow: inset 0 0 15px #00ff00;
+        background-position: 0% 50%;
+    }
+    50% {
+        box-shadow: inset 0 0 30px #00ff00;
+        background-position: 100% 50%;
+    }
+    100% {
+        box-shadow: inset 0 0 15px #00ff00;
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes dividerNeon {
+    0% {
+        box-shadow: inset 0 0 10px #00ff00;
+        opacity: 0.7;
+    }
+    50% {
+        box-shadow: inset 0 0 25px #00ff00;
+        opacity: 1;
+    }
+    100% {
+        box-shadow: inset 0 0 10px #00ff00;
+        opacity: 0.7;
+    }
+}
+
+@keyframes colorCross1 {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes colorCross2 {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes textColorChange {
+    0% {
+        color: #FF0000;
+    }
+    45% {
+        color: #FF0000;
+    }
+    50% {
+        color: #0000FF;
+    }
+    95% {
+        color: #0000FF;
+    }
+    100% {
+        color: #FF0000;
+    }
+}
+
+@keyframes sharedColorAnimation {
+    0% {
+        --shared-color: #FF0000;
+    }
+    45% {
+        --shared-color: #FF0000;
+    }
+    50% {
+        --shared-color: #0000FF;
+    }
+    95% {
+        --shared-color: #0000FF;
+    }
+    100% {
+        --shared-color: #FF0000;
+    }
+}
+
+.floating-container {
+    position: fixed !important;
+    left: 20px !important;
+    bottom: 150px !important;
+    width: 300px;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 4px;
+    background: #000000;
+    border-radius: 12px;
+    border: 4px solid #000000;
+    animation: borderNeon 3s linear infinite;
+    backdrop-filter: blur(8px);
+    position: relative;
+    overflow: hidden;
+}
+
+.floating-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 8px;
+    background: linear-gradient(90deg, 
+        transparent 40%,
+        #00ff00 45%,
+        #00ff00 55%,
+        transparent 60%
+    );
+    background-size: 200% 100%;
+    animation: borderNeon 3s linear infinite;
+    z-index: -1;
+    opacity: 0.8;
+}
+
+/* 중간 분리선 */
+.floating-container .divider {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 4px;
+    right: 4px;
+    height: 8px;
+    background: #000000;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+/* 안쪽 네온 효과 */
+.floating-container .divider::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: #000000;
+    box-shadow: inset 0 0 10px var(--border-color),
+               inset 0 0 15px var(--border-color);
+    animation: dividerNeon 1.5s ease-in-out infinite;
+}
+
+.floating-button {
+    width: 100%;
+    height: 60px;
+    padding: 8px;
+    transition: all 0.15s ease;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    animation: sharedColorAnimation 0.7s ease-in-out infinite;
+}
+
+.floating-button:active {
+    transform: scale(0.97);
+    filter: brightness(1.2);
+}
+
+.floating-button.top:active {
+    background: var(--shared-color) !important;
+}
+
+.floating-button.bottom:active span {
+    color: var(--shared-color) !important;
+}
+
+.floating-button:hover {
+    filter: brightness(1.1);
+}
+
+.floating-button span {
+    font-size: 15px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 0 5px rgba(0,0,0,0.3);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-word;
+    max-width: 100%;
+    line-height: 1.3;
+}
+
+.floating-button.top span {
+    color: #FFFFFF;
+}
+
+.floating-button.bottom span {
+    color: var(--shared-color);
+}
+
+.floating-button.top {
+    border-radius: 8px 8px 0 0;
+    position: relative;
+    overflow: hidden;
+    background: var(--shared-color);
+}
+
+.floating-button.top h3,
+.floating-button.top p {
+    color: #FFFFFF;
+}
+
+.floating-button.bottom {
+    border-radius: 0 0 8px 8px;
+    background: #FFFFFF;
+}
+
+.floating-button.bottom h3,
+.floating-button.bottom p {
+    color: var(--shared-color);
+}
+
+.floating-button.top:hover::before {
+    animation: neonAnimation 1s infinite;
+}
+
+@media screen and (max-width: 768px) {
+    .floating-container {
+        width: calc(100% - 40px);
+        right: 20px;
+    }
+}
