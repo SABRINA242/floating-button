@@ -1,4 +1,4 @@
-* 초폭테두리 네온 플로팅 버튼  티스토리 css 또는 블로그스팟]]></b:skin> 앞에 넣는다 */
+/* 플러팅버튼의 시작 삼색네온 */
 
 @keyframes neonAnimation {
     0% {
@@ -113,26 +113,29 @@
     }
 }
 
-.floating-container {
+/* 플로팅 버튼 컨테이너만 수정 */
+body .floating-container {
     position: fixed !important;
-    left: calc((100% - .post-body.entry-content)/1) !important;
-    bottom: 150px !important;
+    left: 20px !important;
+    bleft: calc((100% - .post-body.entry-content)/1) !important;ottom: 150px !important;
     width: 300px;
     z-index: 999999 !important;
-    display: flex;
+    display: flex !important;
     flex-direction: column;
     gap: 0;
     padding: 4px;
     background: #000000;
     border-radius: 12px;
     border: 4px solid #000000;
-    animation: borderNeon 3s linear infinite;
+    animation: borderNeon 4s linear infinite;
     backdrop-filter: blur(8px);
-    position: relative;
     overflow: hidden;
+    pointer-events: auto;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
-.floating-container::before {
+floating-container::before {
     content: '';
     position: absolute;
     top: 0;
@@ -150,8 +153,8 @@
     animation: borderNeon 3s linear infinite;
     z-index: -1;
     opacity: 0.8;
+.
 }
-
 /* 중간 분리선 */
 .floating-container .divider {
     content: '';
@@ -163,6 +166,45 @@
     background: #000000;
     transform: translateY(-50%);
     z-index: 1;
+}
+
+/* 네온 효과 애니메이션은 유지 */
+@keyframes borderNeon {
+    0% {
+        border-color: #ff00ff;
+        box-shadow: 20px 0 40px #ff00ff,
+                    0 20px 40px transparent,
+                    -20px 0 40px transparent,
+                    0 -20px 40px transparent;
+    }
+    25% {
+        border-color: #00ffff;
+        box-shadow: 0 20px 40px #00ffff,
+                    -20px 0 40px transparent,
+                    0 -20px 40px transparent,
+                    20px 0 40px transparent;
+    }
+    50% {
+        border-color: #ffff00;
+        box-shadow: -20px 0 40px #ffff00,
+                    0 -20px 40px transparent,
+                    20px 0 40px transparent,
+                    0 20px 40px transparent;
+    }
+    75% {
+        border-color: #ff00ff;
+        box-shadow: 0 -20px 40px #ff00ff,
+                    20px 0 40px transparent,
+                    0 20px 40k transparent,
+                    -20px 0 40px transparent;
+    }
+    100% {
+        border-color: #ff00ff;
+        box-shadow: 20px 0 40px #ff00ff,
+                    0 20px 40px transparent,
+                    -20px 0 40px transparent,
+                    0 -20px 40px transparent;
+    }
 }
 
 /* 안쪽 네온 효과 */
@@ -261,9 +303,11 @@
     animation: neonAnimation 1s infinite;
 }
 
+/* 기존 스타일은 그대로 두고 모바일용 스타일만 추가 */
 @media screen and (max-width: 768px) {
-    .floating-container {
-        width: calc(100% - 40px);
-        right: 20px;
+    body .floating-container {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
     }
 }
