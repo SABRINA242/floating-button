@@ -1,4 +1,5 @@
 <script>
+// 상위로 올리기
 document.addEventListener('DOMContentLoaded', function() {
     const floatingContainer = document.querySelector('.floating-container');
     if (floatingContainer) {
