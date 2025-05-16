@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const floatingContainer = document.querySelector('.floating-container');
     if (floatingContainer) {
         document.body.appendChild(floatingContainer);
+        floatingContainer.style.left = '-150px';
     }
 });
 
